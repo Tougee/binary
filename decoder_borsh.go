@@ -303,6 +303,7 @@ func (dec *Decoder) deserializeComplexEnum(rv reflect.Value) error {
 		return errors.New("complex enum too large")
 	}
 	field := rv.Field(int(enum) + 1)
+	dec.pos++
 	return dec.decodeBorsh(field, nil)
 }
 
