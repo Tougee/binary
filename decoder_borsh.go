@@ -21,6 +21,7 @@ import (
 	"errors"
 	"fmt"
 	"io"
+	"log"
 	"reflect"
 
 	"go.uber.org/zap"
@@ -291,10 +292,12 @@ func (dec *Decoder) decodeBorsh(rv reflect.Value, opt *option) (err error) {
 func (dec *Decoder) deserializeComplexEnum(rv reflect.Value) error {
 	rt := rv.Type()
 	// read enum identifier
+	log.Println(dec.pos)
 	tmp, err := dec.ReadUint8()
 	if err != nil {
 		return err
 	}
+	log.Println("tmp ", tmp)
 	enum := BorshEnum(tmp)
 	rv.Field(0).Set(reflect.ValueOf(enum).Convert(rv.Field(0).Type()))
 

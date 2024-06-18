@@ -20,6 +20,7 @@ package bin
 import (
 	"errors"
 	"fmt"
+	"log"
 	"reflect"
 	"sort"
 
@@ -249,6 +250,8 @@ func (e *Encoder) encodeBorsh(rv reflect.Value, opt *option) (err error) {
 func (enc *Encoder) encodeComplexEnumBorsh(rv reflect.Value) error {
 	t := rv.Type()
 	enum := BorshEnum(rv.Field(0).Uint())
+	log.Println(enc.count)
+	log.Println("enum ", enum)
 	// write enum identifier
 	if err := enc.WriteByte(byte(enum)); err != nil {
 		return err
