@@ -266,10 +266,10 @@ func (enc *Encoder) encodeComplexEnumBorsh(rv reflect.Value) error {
 		return enc.encodeStructBorsh(field.Type(), field)
 	}
 	// Encode the value if it's a primitive type
-	isPrimitive, err := enc.encodePrimitive(field, nil)
-	if isPrimitive {
-		return err
-	}
+	// isPrimitive, err := enc.encodePrimitive(field, nil)
+	// if isPrimitive {
+	// 	return err
+	// }
 	return nil
 }
 
