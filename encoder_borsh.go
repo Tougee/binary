@@ -259,18 +259,19 @@ func (enc *Encoder) encodeComplexEnumBorsh(rv reflect.Value) error {
 	}
 	// Enum is empty
 	field := rv.Field(int(enum) + 1)
-	if field.Kind() == reflect.Ptr {
-		field = field.Elem()
-	}
-	if field.Kind() == reflect.Struct {
-		return enc.encodeStructBorsh(field.Type(), field)
-	}
-	// Encode the value if it's a primitive type
+	return enc.encodeBorsh(field, nil)
+	// if field.Kind() == reflect.Ptr {
+	// 	field = field.Elem()
+	// }
+	// if field.Kind() == reflect.Struct {
+	// 	return enc.encodeStructBorsh(field.Type(), field)
+	// }
+	// // Encode the value if it's a primitive type
 	// isPrimitive, err := enc.encodePrimitive(field, nil)
 	// if isPrimitive {
 	// 	return err
 	// }
-	return nil
+	// return nil
 }
 
 type BorshEnum uint8
